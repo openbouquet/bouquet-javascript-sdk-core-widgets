@@ -6,7 +6,7 @@
     "obalbous <oba@squid>"
   ],
   "main": ["dist/squid_api_core-widgets.js", "dist/squid_api_core-widgets.css"],
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "private": true,
   "ignore": [
     "**/.*",
