@@ -9,7 +9,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\nWelcome <span class='sq-login'>";
+  buffer += "\n<span class='sq-welcome'>Welcome</span><span class='sq-login'>";
   if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
