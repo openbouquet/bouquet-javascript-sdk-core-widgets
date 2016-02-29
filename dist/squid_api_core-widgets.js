@@ -394,9 +394,6 @@ function program1(depth0,data) {
             if (squid_api.clientId) {
                 url += "&client_id=" + squid_api.clientId;
             }
-            if (squid_api.customerId) {
-                url += "&customerId=" + squid_api.customerId;
-            }
             url = url + "&redirect_uri=" + redirectUri;
 
             if (!squid_api.debug) {
