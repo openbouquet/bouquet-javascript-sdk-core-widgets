@@ -373,29 +373,7 @@ function program1(depth0,data) {
         },
 
         login: function() {
-            var redirectUri;
-            if (!this.redirectUri) {
-                // use the current location stripping token or code parameters
-                var rurl;
-                rurl = this.removeURLParameter(""+window.location, "access_token");
-                rurl = this.removeURLParameter(rurl, "code");
-                redirectUri = encodeURIComponent(rurl);
-            }
-
-            // redirection mode
-            var url = squid_api.loginURL;
-            if (url.indexOf("?") > 0) {
-                url += "&";
-            }
-            else {
-                url += "?";
-            }
-            url += "response_type=code";
-            if (squid_api.clientId) {
-                url += "&client_id=" + squid_api.clientId;
-            }
-            url = url + "&redirect_uri=" + redirectUri;
-
+            var url = squid_api.utils.getLoginUrl(this.redirectUri);
             if (!squid_api.debug) {
                 window.location = url;
             } else {
@@ -411,29 +389,6 @@ function program1(depth0,data) {
         
         setLogoutFunction : function(f) {
             this.logout = f;
-        },
-
-        removeURLParameter : function(url, parameter) {
-            //prefer to use l.search if you have a location/link object
-            var urlparts= url.split('?');   
-            if (urlparts.length>=2) {
-
-                var prefix= encodeURIComponent(parameter)+'=';
-                var pars= urlparts[1].split(/[&;]/g);
-
-                //reverse iteration as may be destructive
-                for (var i= pars.length; i-- > 0;) {    
-                    //idiom for string.startsWith
-                    if (pars[i].lastIndexOf(prefix, 0) !== -1) {  
-                        pars.splice(i, 1);
-                    }
-                }
-
-                url= urlparts[0]+'?'+pars.join('&');
-                return url;
-            } else {
-                return url;
-            }
         }
     });
 
