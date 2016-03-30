@@ -95,7 +95,7 @@ function program13(depth0,data) {
   return "<i class=\"fa fa-arrow-right\"></i>";
   }
 
-  buffer += "<div class=\"pagination\">\n	<ul>\n		\n		<li class=\"clickable previous\" data-id=\""
+  buffer += "<div class=\"pagination-container\">\n	<ul class=\"pagination\">\n		\n		<li class=\"clickable previous\" data-id=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.prev)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"><a href=\"#\">";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.prev), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
