@@ -679,7 +679,7 @@ function program1(depth0,data) {
             } else {
                 var jsonData = this.model.toJSON();
                 var errorData = null;
-                if (running) {
+                if (running && ! this.ignoreStatusChange) {
                     message = this.runningMessage;
                     level = "warning";
                     dismissible = false;

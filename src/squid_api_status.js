@@ -94,7 +94,7 @@
             } else {
                 var jsonData = this.model.toJSON();
                 var errorData = null;
-                if (running) {
+                if (running && ! this.ignoreStatusChange) {
                     message = this.runningMessage;
                     level = "warning";
                     dismissible = false;
