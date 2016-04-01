@@ -604,16 +604,13 @@ function program1(depth0,data) {
         format : null,
         runningMessage : "Computing in progress",
         failedMessage : "An error has occurred",
+        ignoreStatusChange : null,
 
         initialize: function(options) {
+            var me = this;
             if (!this.model) {
                 this.model = squid_api.model.status;
             }
-            var me = this;
-            this.model.on('change:status', this.renderDelayed, this);
-            this.model.on('change:error', this.render, this);
-            this.model.on('change:message', this.renderDelayed, this);
-
             if (options) {
                 if (options.template) {
                     this.template = options.template;
@@ -624,7 +621,15 @@ function program1(depth0,data) {
                 if (options.failedMessage) {
                     this.failedMessage = options.failedMessage;
                 }
+                if (options.ignoreStatusChange) {
+                    this.ignoreStatusChange = options.ignoreStatusChange;
+                }
             }
+            if (! this.ignoreStatusChange) {
+                this.model.on('change:status', this.renderDelayed, this);
+            }
+            this.model.on('change:error', this.render, this);
+            this.model.on('change:message', this.renderDelayed, this);
         },
 
         events: {
@@ -650,7 +655,7 @@ function program1(depth0,data) {
 
         render: function() {
             var me = this;
-            
+
             // init viewport
             if (this.$el.html() === "") {
                 this.$el.html("<div class='squid-api-core-widgets-status'></div>");
@@ -692,7 +697,7 @@ function program1(depth0,data) {
                         dismissible = true;
                     }
                 }
-                
+
                 if (message) {
                 	message = message.replace("\n","<br>");
                 } else if (!errorData){
