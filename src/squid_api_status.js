@@ -19,16 +19,13 @@
         format : null,
         runningMessage : "Computing in progress",
         failedMessage : "An error has occurred",
+        ignoreStatusChange : null,
 
         initialize: function(options) {
+            var me = this;
             if (!this.model) {
                 this.model = squid_api.model.status;
             }
-            var me = this;
-            this.model.on('change:status', this.renderDelayed, this);
-            this.model.on('change:error', this.render, this);
-            this.model.on('change:message', this.renderDelayed, this);
-
             if (options) {
                 if (options.template) {
                     this.template = options.template;
@@ -39,7 +36,15 @@
                 if (options.failedMessage) {
                     this.failedMessage = options.failedMessage;
                 }
+                if (options.ignoreStatusChange) {
+                    this.ignoreStatusChange = options.ignoreStatusChange;
+                }
             }
+            if (! this.ignoreStatusChange) {
+                this.model.on('change:status', this.renderDelayed, this);
+            }
+            this.model.on('change:error', this.render, this);
+            this.model.on('change:message', this.renderDelayed, this);
         },
 
         events: {
@@ -65,7 +70,7 @@
 
         render: function() {
             var me = this;
-            
+
             // init viewport
             if (this.$el.html() === "") {
                 this.$el.html("<div class='squid-api-core-widgets-status'></div>");
@@ -89,7 +94,7 @@
             } else {
                 var jsonData = this.model.toJSON();
                 var errorData = null;
-                if (running) {
+                if (running && ! this.ignoreStatusChange) {
                     message = this.runningMessage;
                     level = "warning";
                     dismissible = false;
@@ -107,7 +112,7 @@
                         dismissible = true;
                     }
                 }
-                
+
                 if (message) {
                 	message = message.replace("\n","<br>");
                 } else if (!errorData){

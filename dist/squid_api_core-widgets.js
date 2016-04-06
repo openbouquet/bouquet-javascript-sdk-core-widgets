@@ -95,7 +95,7 @@ function program13(depth0,data) {
   return "<i class=\"fa fa-arrow-right\"></i>";
   }
 
-  buffer += "<div class=\"pagination\">\n	<ul>\n		\n		<li class=\"clickable previous\" data-id=\""
+  buffer += "<div class=\"pagination-container\">\n	<ul class=\"pagination\">\n		\n		<li class=\"clickable previous\" data-id=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.prev)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"><a href=\"#\">";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.prev), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
@@ -604,16 +604,13 @@ function program1(depth0,data) {
         format : null,
         runningMessage : "Computing in progress",
         failedMessage : "An error has occurred",
+        ignoreStatusChange : null,
 
         initialize: function(options) {
+            var me = this;
             if (!this.model) {
                 this.model = squid_api.model.status;
             }
-            var me = this;
-            this.model.on('change:status', this.renderDelayed, this);
-            this.model.on('change:error', this.render, this);
-            this.model.on('change:message', this.renderDelayed, this);
-
             if (options) {
                 if (options.template) {
                     this.template = options.template;
@@ -624,7 +621,15 @@ function program1(depth0,data) {
                 if (options.failedMessage) {
                     this.failedMessage = options.failedMessage;
                 }
+                if (options.ignoreStatusChange) {
+                    this.ignoreStatusChange = options.ignoreStatusChange;
+                }
             }
+            if (! this.ignoreStatusChange) {
+                this.model.on('change:status', this.renderDelayed, this);
+            }
+            this.model.on('change:error', this.render, this);
+            this.model.on('change:message', this.renderDelayed, this);
         },
 
         events: {
@@ -650,7 +655,7 @@ function program1(depth0,data) {
 
         render: function() {
             var me = this;
-            
+
             // init viewport
             if (this.$el.html() === "") {
                 this.$el.html("<div class='squid-api-core-widgets-status'></div>");
@@ -674,7 +679,7 @@ function program1(depth0,data) {
             } else {
                 var jsonData = this.model.toJSON();
                 var errorData = null;
-                if (running) {
+                if (running && ! this.ignoreStatusChange) {
                     message = this.runningMessage;
                     level = "warning";
                     dismissible = false;
@@ -692,7 +697,7 @@ function program1(depth0,data) {
                         dismissible = true;
                     }
                 }
-                
+
                 if (message) {
                 	message = message.replace("\n","<br>");
                 } else if (!errorData){
