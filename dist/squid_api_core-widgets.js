@@ -674,8 +674,7 @@ function program1(depth0,data) {
             }
 
             if ((!running) && (!failed) && (!message)) {
-                // hide
-                this.$el.hide();
+
             } else {
                 var jsonData = this.model.toJSON();
                 var errorData = null;
@@ -699,9 +698,9 @@ function program1(depth0,data) {
                 }
 
                 if (message) {
-                	message = message.replace("\n","<br>");
+                    message = message.replace("\n","<br>");
                 } else if (!errorData){
-                	message = "An error has occurred (sorry we can't give you more details)";
+                    message = "An error has occurred (sorry we can't give you more details)";
                 }
 
                 var html = this.template({"level" : level, "dismissible" : dismissible, "message" : message, "errorData" : errorData});
@@ -710,7 +709,6 @@ function program1(depth0,data) {
                 this.model.set({message : null}, {silent : true});
 
                 this.$el.find(".squid-api-core-widgets-status").html(html);
-                this.$el.show();
 
                 // view message for 10 seconds unless it is an error
                 if (! error && ! running) {
