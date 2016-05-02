@@ -89,7 +89,8 @@
             }
 
             if ((!running) && (!failed) && (!message)) {
-
+                // hide
+                this.$el.hide();
             } else {
                 var jsonData = this.model.toJSON();
                 var errorData = null;

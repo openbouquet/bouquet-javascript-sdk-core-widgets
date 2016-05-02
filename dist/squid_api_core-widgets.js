@@ -674,7 +674,8 @@ function program1(depth0,data) {
             }
 
             if ((!running) && (!failed) && (!message)) {
-
+                // hide
+                this.$el.hide();
             } else {
                 var jsonData = this.model.toJSON();
                 var errorData = null;
