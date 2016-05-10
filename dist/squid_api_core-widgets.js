@@ -525,7 +525,7 @@ function program1(depth0,data) {
         Define Squid router object
     */
 
-    squid_api.router = Backbone.Router.extend({
+    squid_api.view.Router = Backbone.Router.extend({
         initialize: function($el) {
             this.$el = $el;
         },
