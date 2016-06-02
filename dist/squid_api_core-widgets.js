@@ -507,6 +507,75 @@ function program1(depth0,data) {
 }));
 
 (function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD.
+        define(['Backbone', '_', 'squid_api'], factory);
+    } else {
+        factory(root.Backbone, _, root.squid_api);
+    }
+}(this, function (Backbone, _, squid_api) {
+
+    /**
+        Store specific application routes
+    */
+
+    squid_api.routes = [];
+
+    /**
+        Define Squid router object
+    */
+
+    squid_api.view.Router = Backbone.Router.extend({
+        initialize: function($el) {
+            this.$el = $el;
+        },
+
+        ContentView: Backbone.View.extend({
+            initialize: function(options) {
+                this.template = options.template;
+            },
+
+            render: function() {
+                var content = $(this.template).html();
+                $(this.el).html(content);
+                return this;
+            }
+        }),
+
+        routes: {
+            "*notfound": "notFound"
+        },
+
+        views: {},
+
+        switchView: function(view) {
+            var newView;
+            // view creation
+            if (!this.views[view]) {
+                newView = new this.ContentView({template: view});
+                this.views[view] = newView.$el;
+                newView.render();
+                this.$el.append(newView.$el);
+            }
+            // show only selected view
+            for (var v in this.views) {
+                if (v === view) {
+                    this.views[v].show();
+                } else {
+                    this.views[v].hide();
+                }
+            }
+            return newView;
+        },
+        notFound: function() {
+            this.navigate("/", { trigger: true });
+        }
+    });
+
+    return squid_api;
+}));
+
+(function (root, factory) {
     root.squid_api.view.Selector = factory(root.Backbone, root.squid_api, squid_api.template.squid_api_selector);
 
 }(this, function (Backbone, squid_api, template) {
@@ -699,9 +768,9 @@ function program1(depth0,data) {
                 }
 
                 if (message) {
-                	message = message.replace("\n","<br>");
+                    message = message.replace("\n","<br>");
                 } else if (!errorData){
-                	message = "An error has occurred (sorry we can't give you more details)";
+                    message = "An error has occurred (sorry we can't give you more details)";
                 }
 
                 var html = this.template({"level" : level, "dismissible" : dismissible, "message" : message, "errorData" : errorData});
@@ -710,7 +779,6 @@ function program1(depth0,data) {
                 this.model.set({message : null}, {silent : true});
 
                 this.$el.find(".squid-api-core-widgets-status").html(html);
-                this.$el.show();
 
                 // view message for 10 seconds unless it is an error
                 if (! error && ! running) {
