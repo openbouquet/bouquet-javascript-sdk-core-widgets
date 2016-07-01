@@ -16,9 +16,5 @@
     "src",
     "build",
     "Gruntfile.js"
-  ],
-  "dependencies": {
-    "squid_api": "https://github.com/openbouquet/bouquet-javascript-sdk.git",
-    "handlebars": "~1.3.0"
-  }
+  ]
 }
