@@ -83,7 +83,7 @@
             var failed = false;
             var level = "info", dismissible = true;
             var fadeOut = true;
-            var notificaton = null;
+            var notification = null;
 
             if (error) {
                 failed = true;
