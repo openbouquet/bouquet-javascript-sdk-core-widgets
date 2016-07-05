@@ -82,10 +82,17 @@
             var running = ((status === this.model.STATUS_RUNNING) || (status === this.model.STATUS_PENDING));
             var failed = false;
             var level = "info", dismissible = true;
+            var fadeOut = true;
+            var notificaton;
 
             if (error) {
                 failed = true;
                 level = "danger";
+                fadeOut = false;
+            }
+            
+            if (running) {
+                fadeOut = false;
             }
 
             if ((!running) && (!failed) && (!message)) {
@@ -111,23 +118,36 @@
                     } else {
                         dismissible = true;
                     }
+                } else if (jsonData.type === "notification") {
+                    fadeOut = false;
+                    message = null;
+                    level = "warning";
+                    notification = {
+                            "object" : "project"
+                    };
                 }
 
                 if (message) {
                     message = message.replace("\n","<br>");
-                } else if (!errorData){
+                } else if (!errorData && !notification){
                     message = "An error has occurred (sorry we can't give you more details)";
                 }
 
-                var html = this.template({"level" : level, "dismissible" : dismissible, "message" : message, "errorData" : errorData});
+                var html = this.template({
+                    "level" : level,
+                    "dismissible" : dismissible,
+                    "message" : message,
+                    "errorData" : errorData,
+                    "notification" : notification
+                });
 
                 // Message to null after being displayed
                 this.model.set({message : null}, {silent : true});
 
                 this.$el.find(".squid-api-core-widgets-status").html(html);
 
-                // view message for 10 seconds unless it is an error
-                if (! error && ! running) {
+                // view message for 15 seconds unless it is an error
+                if (fadeOut) {
                     setTimeout(function() {
                         var me1 = me;
                         me.$el.find(".status-error").fadeOut(function() {

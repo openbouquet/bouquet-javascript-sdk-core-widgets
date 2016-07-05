@@ -264,6 +264,12 @@ function program12(depth0,data) {
   return buffer;
   }
 
+function program14(depth0,data) {
+  
+  
+  return "\r\n	Your data was modified by an external action. <br>\r\n	Please <a href=\"javascript:location.reload();\" style=\"color: #fff; text-decoration: underline;\">refresh your page</a> to reflect this change.\r\n	";
+  }
+
   buffer += "<div class=\"status-error alert alert-";
   if (helper = helpers.level) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.level); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -279,6 +285,9 @@ function program12(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n	";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.errorData), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n	";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.notification), {hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n</div>\r\n";
   return buffer;
@@ -738,10 +747,17 @@ function program1(depth0,data) {
             var running = ((status === this.model.STATUS_RUNNING) || (status === this.model.STATUS_PENDING));
             var failed = false;
             var level = "info", dismissible = true;
+            var fadeOut = true;
+            var notificaton;
 
             if (error) {
                 failed = true;
                 level = "danger";
+                fadeOut = false;
+            }
+            
+            if (running) {
+                fadeOut = false;
             }
 
             if ((!running) && (!failed) && (!message)) {
@@ -767,23 +783,36 @@ function program1(depth0,data) {
                     } else {
                         dismissible = true;
                     }
+                } else if (jsonData.type === "notification") {
+                    fadeOut = false;
+                    message = null;
+                    level = "warning";
+                    notification = {
+                            "object" : "project"
+                    };
                 }
 
                 if (message) {
                     message = message.replace("\n","<br>");
-                } else if (!errorData){
+                } else if (!errorData && !notification){
                     message = "An error has occurred (sorry we can't give you more details)";
                 }
 
-                var html = this.template({"level" : level, "dismissible" : dismissible, "message" : message, "errorData" : errorData});
+                var html = this.template({
+                    "level" : level,
+                    "dismissible" : dismissible,
+                    "message" : message,
+                    "errorData" : errorData,
+                    "notification" : notification
+                });
 
                 // Message to null after being displayed
                 this.model.set({message : null}, {silent : true});
 
                 this.$el.find(".squid-api-core-widgets-status").html(html);
 
-                // view message for 10 seconds unless it is an error
-                if (! error && ! running) {
+                // view message for 15 seconds unless it is an error
+                if (fadeOut) {
                     setTimeout(function() {
                         var me1 = me;
                         me.$el.find(".status-error").fadeOut(function() {
