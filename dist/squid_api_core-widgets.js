@@ -748,7 +748,7 @@ function program1(depth0,data) {
             var failed = false;
             var level = "info", dismissible = true;
             var fadeOut = true;
-            var notificaton;
+            var notificaton = null;
 
             if (error) {
                 failed = true;
