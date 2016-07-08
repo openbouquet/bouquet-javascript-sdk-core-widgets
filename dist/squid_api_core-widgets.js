@@ -382,7 +382,7 @@ function program1(depth0,data) {
                         }
                     }
                     var data = this.model.toJSON();
-                    if (this.model.accessToken) {
+                    if (data.accessToken) {
                         data.logout = true;
                     } else {
                         // no auth mode
