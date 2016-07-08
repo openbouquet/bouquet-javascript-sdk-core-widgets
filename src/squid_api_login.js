@@ -57,7 +57,14 @@
                             this.login();
                         }
                     }
-                    var html = this.template(this.model.toJSON());
+                    var data = this.model.toJSON();
+                    if (this.model.accessToken) {
+                        data.logout = true;
+                    } else {
+                        // no auth mode
+                        data.logout = false;
+                    }
+                    var html = this.template(data);
                     this.$el.html(html);
                 }
             }
