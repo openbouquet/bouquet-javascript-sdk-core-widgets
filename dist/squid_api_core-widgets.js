@@ -202,7 +202,7 @@ function program7(depth0,data) {
 this["squid_api"]["template"]["squid_api_status"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", self=this;
+  var buffer = "", stack1, helper, functionType="function", self=this, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
@@ -274,8 +274,13 @@ function program12(depth0,data) {
 
 function program14(depth0,data) {
   
-  
-  return "\r\n	Your data was modified by an external action. <br>\r\n	Please <a href=\"javascript:location.reload();\" style=\"color: #fff; text-decoration: underline;\">refresh your page</a> to reflect this change.\r\n	";
+  var buffer = "", stack1;
+  buffer += "\r\n	"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.notification)),stack1 == null || stack1 === false ? stack1 : stack1.objectType)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + " \""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.notification)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" was modified by an external action. <br>\r\n	Please <a href=\"javascript:location.reload();\" style=\"color: #fff; text-decoration: underline;\">refresh your page</a> to reflect this change.\r\n	";
+  return buffer;
   }
 
   buffer += "<div class=\"status-error alert alert-";
@@ -802,9 +807,7 @@ function program1(depth0,data) {
                     fadeOut = false;
                     message = null;
                     level = "warning";
-                    notification = {
-                            "object" : "project"
-                    };
+                    notification = jsonData.data;
                 }
 
                 if (message) {

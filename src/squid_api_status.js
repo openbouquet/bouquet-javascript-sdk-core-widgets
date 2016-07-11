@@ -122,9 +122,7 @@
                     fadeOut = false;
                     message = null;
                     level = "warning";
-                    notification = {
-                            "object" : "project"
-                    };
+                    notification = jsonData.data;
                 }
 
                 if (message) {
