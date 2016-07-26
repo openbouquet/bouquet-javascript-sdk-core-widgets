@@ -376,6 +376,7 @@ function program1(depth0,data) {
         },
 
         render: function() {
+            var me = this;
             if (this.model) {
                 if (!this.model.get("error")) {
                     var userLogin = this.model.get("login");
@@ -393,8 +394,13 @@ function program1(depth0,data) {
                         // no auth mode
                         data.logout = false;
                     }
-                    var html = this.template(data);
-                    this.$el.html(html);
+                    squid_api.getCustomer().done(function(customer) {
+                        if (customer.get("authMode") === "BYPASS") {
+                            data.logout = false;
+                        }
+                        var html = me.template(data);
+                        me.$el.html(html);
+                    });
                 }
             }
 
