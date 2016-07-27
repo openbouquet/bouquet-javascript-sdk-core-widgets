@@ -342,6 +342,7 @@ function program1(depth0,data) {
         el : "#login",
         redirectUri: null,
         autoShow: true,
+        hideLogoutLink: null,
         template: squid_api.template.squid_api_login,
 
         initialize: function(options) {
@@ -356,6 +357,9 @@ function program1(depth0,data) {
                 }
                 if (options.template) {
                     this.template = options.template;
+                }
+                if (options.hideLogoutLink) {
+                	this.hideLogoutLink = options.hideLogoutLink;
                 }
             }
         },
@@ -395,7 +399,7 @@ function program1(depth0,data) {
                         data.logout = false;
                     }
                     squid_api.getCustomer().done(function(customer) {
-                        if (customer.get("authMode") === "BYPASS") {
+                        if (customer.get("authMode") === "BYPASS" || me.hideLogoutLink === true) {
                             data.logout = false;
                         }
                         var html = me.template(data);
