@@ -32,8 +32,8 @@
         },
 
         render : function() {
-            var pageSize = this.config.get("maxResults");
-            var startIndex = this.config.get("startIndex");
+            var pageSize = this.config.get("maxResults") || 10;
+            var startIndex = this.config.get("startIndex") || 0;
             var results = this.model.get("results");
             
             if (results) {
