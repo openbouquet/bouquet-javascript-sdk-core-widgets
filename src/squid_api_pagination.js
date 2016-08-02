@@ -33,6 +33,8 @@
 
         render : function() {
             var pageSize = this.config.get("maxResults") || 10;
+            // ignore pageSize Index
+            pageSize = pageSize - 1;
             var startIndex = this.config.get("startIndex") || 0;
             var results = this.model.get("results");
             
