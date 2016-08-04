@@ -123,6 +123,11 @@
                     message = null;
                     level = "warning";
                     notification = jsonData.data;
+                    // by default do not display meta-model notifications (T1684)
+                    if (notification.objectType) {
+                        console.log(notification.objectType + " '" + notification.name +"' was modified by user : "+notification.emitter.userId);
+                        return;
+                    }
                 }
 
                 if (message) {
