@@ -444,7 +444,6 @@ function program1(depth0,data) {
             this.config.on("change:startIndex", this.render, this);
             this.config.on("change:pageLength", this.render, this);
             this.model.on("change:results", this.render, this);
-            this.config.on("change", this.resetStartIndex, this);
         },
         
         events : { 
@@ -454,12 +453,6 @@ function program1(depth0,data) {
                 var pageSize = this.config.get("maxResults");
                 this.config.set("startIndex", pageId * pageSize);
             }
-        },
-
-        resetStartIndex: function() {
-            if (! this.config.hasChanged("startIndex")) {
-                this.config.set("startIndex", 0);
-            }   
         },
 
         render : function() {
