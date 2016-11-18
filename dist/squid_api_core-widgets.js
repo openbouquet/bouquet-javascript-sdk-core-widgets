@@ -413,12 +413,7 @@ function program1(depth0,data) {
 
         login: function() {
             var url = squid_api.utils.getLoginUrl(this.redirectUri);
-            if (!squid_api.debug) {
-                window.location = url;
-            } else {
-                // bypass redirection
-                console.log("redirection : "+url);
-            }
+            squid_api.utils.redirect(ur);
         },
 
         logout: function(event) {
