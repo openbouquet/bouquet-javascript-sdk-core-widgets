@@ -84,7 +84,7 @@
 
         login: function() {
             var url = squid_api.utils.getLoginUrl(this.redirectUri);
-            squid_api.utils.redirect(ur);
+            squid_api.utils.redirect(url);
         },
 
         logout: function(event) {
