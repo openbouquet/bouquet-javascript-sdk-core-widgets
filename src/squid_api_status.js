@@ -106,8 +106,8 @@
                     level = "warning";
                     dismissible = false;
                 } else if (jsonData.error) {
-                    if (jsonData.message !== null && jsonData.message !=="") {
-                        message = jsonData.message;
+                    if (jsonData.error.message !== null && jsonData.error.message !=="") {
+                        message = jsonData.error.message;
                     } else if (jsonData.error.responseJSON && jsonData.error.responseJSON.error) {
                         message = jsonData.error.responseJSON.error;
                     } else {
@@ -143,9 +143,6 @@
                     "errorData" : errorData,
                     "notification" : notification
                 });
-
-                // Message to null after being displayed
-                this.model.set({message : null}, {silent : true});
 
                 this.$el.find(".squid-api-core-widgets-status").html(html);
 
