@@ -61,11 +61,12 @@
         },
 
         renderDelayed: function() {
-            // just slightly delay rendering (to avoid flickering when action is very short)
+            // delay rendering (to avoid flickering when action is very short)
+            var delay = this.model.get("delayMillis") || 300; // 300ms by default
             var me = this;
             setTimeout(function() {
                 me.render();
-            }, 300);
+            }, delay);
         },
 
         render: function() {
@@ -129,32 +130,33 @@
                         return;
                     }
                 }
-
-                if (message) {
-                    message = message.replace("\n","<br>");
-                } else if (!errorData && !notification && !running) {
-                    message = "An error has occurred (sorry we can't give you more details)";
+                
+                // display
+                var html;
+                if (message || errorData || notification) {
+                    if (message) {
+                        message = message.replace("\n","<br>");
+                    }
+                    html = this.template({
+                        "level" : level,
+                        "dismissible" : dismissible,
+                        "message" : message,
+                        "errorData" : errorData,
+                        "notification" : notification
+                    });
+                    // view message for 15 seconds unless it is an error
+                    if (fadeOut) {
+                        setTimeout(function() {
+                            var me1 = me;
+                            me.$el.find(".status-error").fadeOut(function() {
+                                me1.$el.empty();
+                            });
+                        }, 15000);
+                    }
+                } else {
+                    html = "";
                 }
-
-                var html = this.template({
-                    "level" : level,
-                    "dismissible" : dismissible,
-                    "message" : message,
-                    "errorData" : errorData,
-                    "notification" : notification
-                });
-
-                this.$el.find(".squid-api-core-widgets-status").html(html);
-
-                // view message for 15 seconds unless it is an error
-                if (fadeOut) {
-                    setTimeout(function() {
-                        var me1 = me;
-                        me.$el.find(".status-error").fadeOut(function() {
-                            me1.$el.empty();
-                        });
-                    }, 15000);
-                }
+                this.$el.find(".squid-api-core-widgets-status").html(html);   
             }
             return this;
         }
