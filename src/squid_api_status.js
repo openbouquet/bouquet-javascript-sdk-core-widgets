@@ -132,7 +132,7 @@
 
                 if (message) {
                     message = message.replace("\n","<br>");
-                } else if (!errorData && !notification){
+                } else if (!errorData && !notification && !running) {
                     message = "An error has occurred (sorry we can't give you more details)";
                 }
 
