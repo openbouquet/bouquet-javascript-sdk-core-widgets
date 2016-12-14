@@ -96,68 +96,63 @@
                 fadeOut = false;
             }
 
-            if ((!running) && (!failed) && (!message)) {
-                // hide
-                this.$el.hide();
-            } else {
-                var jsonData = this.model.toJSON();
-                var errorData = null;
-                if (running && ! this.ignoreStatusChange) {
-                    message = this.runningMessage;
-                    level = "warning";
-                    dismissible = false;
-                } else if (jsonData.error) {
-                    if (jsonData.error.message !== null && jsonData.error.message !=="") {
-                        message = jsonData.error.message;
-                    } else if (jsonData.error.responseJSON && jsonData.error.responseJSON.error) {
-                        message = jsonData.error.responseJSON.error;
-                    } else {
-                        errorData = jsonData.error;
-                    }
-                    if (jsonData.error.dismissible === false) {
-                        dismissible = false;
-                    } else {
-                        dismissible = true;
-                    }
-                } else if (jsonData.type === "notification") {
-                    fadeOut = false;
-                    message = null;
-                    level = "warning";
-                    notification = jsonData.data;
-                    // by default do not display meta-model notifications (T1684)
-                    if (notification.objectType) {
-                        console.log(notification.objectType + " '" + notification.name +"' was modified by user : "+notification.emitter.userId);
-                        return;
-                    }
-                }
-                
-                // display
-                var html;
-                if (message || errorData || notification) {
-                    if (message) {
-                        message = message.replace("\n","<br>");
-                    }
-                    html = this.template({
-                        "level" : level,
-                        "dismissible" : dismissible,
-                        "message" : message,
-                        "errorData" : errorData,
-                        "notification" : notification
-                    });
-                    // view message for 15 seconds unless it is an error
-                    if (fadeOut) {
-                        setTimeout(function() {
-                            var me1 = me;
-                            me.$el.find(".status-error").fadeOut(function() {
-                                me1.$el.empty();
-                            });
-                        }, 15000);
-                    }
+            var jsonData = this.model.toJSON();
+            var errorData = null;
+            if (running && ! this.ignoreStatusChange) {
+                message = this.runningMessage;
+                level = "warning";
+                dismissible = false;
+            } else if (jsonData.error) {
+                if (jsonData.error.message !== null && jsonData.error.message !=="") {
+                    message = jsonData.error.message;
+                } else if (jsonData.error.responseJSON && jsonData.error.responseJSON.error) {
+                    message = jsonData.error.responseJSON.error;
                 } else {
-                    html = "";
+                    errorData = jsonData.error;
                 }
-                this.$el.find(".squid-api-core-widgets-status").html(html);   
+                if (jsonData.error.dismissible === false) {
+                    dismissible = false;
+                } else {
+                    dismissible = true;
+                }
+            } else if (jsonData.type === "notification") {
+                fadeOut = false;
+                message = null;
+                level = "warning";
+                notification = jsonData.data;
+                // by default do not display meta-model notifications (T1684)
+                if (notification.objectType) {
+                    console.log(notification.objectType + " '" + notification.name +"' was modified by user : "+notification.emitter.userId);
+                    return;
+                }
             }
+            
+            // display
+            var html;
+            if (message || errorData || notification) {
+                if (message) {
+                    message = message.replace("\n","<br>");
+                }
+                html = this.template({
+                    "level" : level,
+                    "dismissible" : dismissible,
+                    "message" : message,
+                    "errorData" : errorData,
+                    "notification" : notification
+                });
+                // view message for 15 seconds unless it is an error
+                if (fadeOut) {
+                    setTimeout(function() {
+                        var me1 = me;
+                        me.$el.find(".status-error").fadeOut(function() {
+                            me1.$el.empty();
+                        });
+                    }, 15000);
+                }
+            } else {
+                html = "";
+            }
+            this.$el.find(".squid-api-core-widgets-status").html(html);   
             return this;
         }
 
