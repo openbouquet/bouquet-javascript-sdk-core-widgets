@@ -103,7 +103,7 @@
                 level = "warning";
                 dismissible = false;
             } else if (jsonData.error) {
-                if (jsonData.error.message !== null && jsonData.error.message !=="") {
+                if (jsonData.error.message) {
                     message = jsonData.error.message;
                 } else if (jsonData.error.responseJSON && jsonData.error.responseJSON.error) {
                     message = jsonData.error.responseJSON.error;
