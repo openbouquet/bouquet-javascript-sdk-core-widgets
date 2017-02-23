@@ -66,12 +66,12 @@
             //var this.pageIndex = this.model.get("pageIndex") || 0;
             var results = this.model.get("results");
             if (results) {
-                if (this.config.hasChanged("startIndex") === false || (this.pageIndex > 0 && startIndex === 0)) {
+            	
+                if (this.pageIndex > 0 && startIndex === 0) {
                  	this.pageIndex = 0;
-                	startIndex = 0;
             		this.config.set("pageIndex", 0);
-            		this.config.set("startIndex", 0);
                 }
+                
                 var totalSize = results.totalSize;
                 var currentPageId = Math.floor(startIndex/pageSize);
                 var totalPages = Math.ceil(totalSize/pageSize);
