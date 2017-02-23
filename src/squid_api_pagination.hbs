@@ -1,9 +1,11 @@
 <div class="pagination-container">
 	<ul class="pagination">
-		
+
 		<li class="clickable previous" data-id="{{prev.id}}"><a href="#">{{#if prev}}<i class="fa fa-arrow-left"></i>{{else}}&nbsp;{{/if}}</a></li>
 
+		{{#if firstPage}}
 		<li class="clickable {{#if firstPage.selected}} active {{/if}}" data-id="{{firstPage.id}}"><a href="#">{{firstPage.label}}</a></li>
+		{{/if}}
 
 		{{#if startSpacers}}
 		<li><a style="pointer-events: none; cursor: default;">...</a></li>
@@ -22,6 +24,6 @@
 		{{/if}}
 
 		<li class="clickable" class="next" data-id="{{next.id}}"><a  href="#">{{#if next}}<i class="fa fa-arrow-right"></i>{{else}}&nbsp;{{/if}}</a></li>
-		
+
 	</ul>
 </div>

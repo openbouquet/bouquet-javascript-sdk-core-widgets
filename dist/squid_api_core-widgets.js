@@ -55,21 +55,34 @@ function program3(depth0,data) {
 
 function program5(depth0,data) {
   
+  var buffer = "", stack1;
+  buffer += "\n		<li class=\"clickable ";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.selected), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\" data-id=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\"><a href=\"#\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.label)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a></li>\n		";
+  return buffer;
+  }
+function program6(depth0,data) {
+  
   
   return " active ";
   }
 
-function program7(depth0,data) {
+function program8(depth0,data) {
   
   
   return "\n		<li><a style=\"pointer-events: none; cursor: default;\">...</a></li>\n		";
   }
 
-function program9(depth0,data) {
+function program10(depth0,data) {
   
   var buffer = "", stack1, helper;
   buffer += "\n		<li class=\"clickable ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.selected), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.selected), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\" data-id=\"";
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -83,11 +96,11 @@ function program9(depth0,data) {
   return buffer;
   }
 
-function program11(depth0,data) {
+function program12(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n		<li class=\"clickable ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.lastPage)),stack1 == null || stack1 === false ? stack1 : stack1.selected), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.lastPage)),stack1 == null || stack1 === false ? stack1 : stack1.selected), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\" data-id=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.lastPage)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -97,42 +110,38 @@ function program11(depth0,data) {
   return buffer;
   }
 
-function program13(depth0,data) {
+function program14(depth0,data) {
   
   
   return "<i class=\"fa fa-arrow-right\"></i>";
   }
 
-  buffer += "<div class=\"pagination-container\">\n	<ul class=\"pagination\">\n		\n		<li class=\"clickable previous\" data-id=\""
+  buffer += "<div class=\"pagination-container\">\n	<ul class=\"pagination\">\n\n		<li class=\"clickable previous\" data-id=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.prev)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"><a href=\"#\">";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.prev), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</a></li>\n\n		<li class=\"clickable ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.selected), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\" data-id=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\"><a href=\"#\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.label)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></li>\n\n		";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.startSpacers), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
+  buffer += "</a></li>\n\n		";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.firstPage), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n		";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.pages), {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.startSpacers), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n		";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.endSpacers), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.pages), {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n		";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.lastPage), {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.endSpacers), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n		";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.lastPage), {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n		<li class=\"clickable\" class=\"next\" data-id=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.next)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"><a  href=\"#\">";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.next), {hash:{},inverse:self.program(3, program3, data),fn:self.program(13, program13, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.next), {hash:{},inverse:self.program(3, program3, data),fn:self.program(14, program14, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</a></li>\n		\n	</ul>\n</div>";
+  buffer += "</a></li>\n\n	</ul>\n</div>\n";
   return buffer;
   });
 
@@ -438,6 +447,8 @@ function program1(depth0,data) {
         config : null,
         
         pagesRangeSize : 10,
+        
+        pageIndex: 0, 
 
         initialize : function(options) {
             this.config = options.config || squid_api.model.config;
@@ -450,8 +461,41 @@ function program1(depth0,data) {
             "click li.clickable" : function(event) {
                 event.preventDefault();
                 var pageId = $(event.currentTarget).data("id");
+                this.pageIndex = this.model.get("pageIndex") || 0;
+                var startIndex = this.model.get("startIndex");
                 var pageSize = this.config.get("maxResults");
-                this.config.set("startIndex", pageId * pageSize);
+                var results = this.model.get("results");
+                var totalSize, totalPages;
+                if (pageId === "prev") {
+                	this.pageIndex = Math.max( this.pageIndex - 10,0);
+                	this.config.set("pageIndex", this.pageIndex);
+                	this.config.set("startIndex", this.pageIndex * pageSize);
+                } else if (pageId === "next") {
+                    if (results) {
+                    	totalSize = results.totalSize;
+                        totalPages = Math.ceil(totalSize/pageSize);
+                        this.pageIndex = Math.min(this.pageIndex + 10,totalPages - 10);
+                    	this.config.set("pageIndex", this.pageIndex);
+                 		this.config.set("startIndex", this.pageIndex * pageSize);
+                    }
+                } else if (pageId === "first") {
+                    	this.pageIndex = 0;
+                    	this.config.set("pageIndex", this.pageIndex);
+                    	this.config.set("startIndex", this.pageIndex * pageSize);
+                } else if (pageId === "last") {
+                	if (results) {
+                		totalSize = results.totalSize;
+                		totalPages = Math.ceil(totalSize/pageSize);
+                		this.pageIndex = totalPages - 10;
+                		this.config.set("pageIndex", this.pageIndex);
+                		this.config.set("startIndex", (totalPages - 1) * pageSize);
+                    }
+                } else {
+                	if (this.config.get("pageIndex")>=0) {
+                		this.pageIndex = this.config.get("pageIndex");
+                	}
+                	this.config.set("startIndex", pageId * pageSize);
+                }
             }
         },
 
@@ -459,62 +503,65 @@ function program1(depth0,data) {
             var pageSize = this.config.get("maxResults") || 10;
             // ignore pageSize Index
             var startIndex = this.config.get("startIndex") || 0;
+            //var this.pageIndex = this.model.get("pageIndex") || 0;
             var results = this.model.get("results");
-            
             if (results) {
+                if (this.config.hasChanged("startIndex") === false || (this.pageIndex > 0 && startIndex === 0)) {
+                 	this.pageIndex = 0;
+                	startIndex = 0;
+            		this.config.set("pageIndex", 0);
+            		this.config.set("startIndex", 0);
+                }
                 var totalSize = results.totalSize;
                 var currentPageId = Math.floor(startIndex/pageSize);
                 var totalPages = Math.ceil(totalSize/pageSize);
-                var firstPageToDisplay = currentPageId - this.pagesRangeSize + 1;
-                if (firstPageToDisplay<0) {
-                    firstPageToDisplay = 0;
-                }
                     
                 var pages = [];
-                var pageId = firstPageToDisplay;
-                var selected = (pageId == currentPageId);
+                var pageId = this.pageIndex;
 
                 // prev
                 var prev;
-                if (currentPageId>0) {
-                    prev = { "id" : currentPageId-1};
+                if (this.pageIndex>0) {
+                    prev = { "id" : "prev"};
                 }
 
                 // first page
-                var firstPage = { "id" : 0, "label" : 1, "selected" :  selected};
-
+                var firstPage = { "id" : "first", "label" : 1, "selected" :  (0 === currentPageId)};
+                if (this.pageIndex === 0) {
+                	firstPage = null;
+                }
                 // last page
-                selected = (totalPages-1 == currentPageId);
-                var lastPage = { "id" : totalPages-1, "label" : totalPages, "selected" :  selected};
+                var selected = (totalPages-1 == currentPageId);
+                var lastPage = { "id" : "last", "label" : totalPages, "selected" :  selected};
 
                 // Spacers
                 var startSpacers, endSpacers;
-                if (totalPages > 2) {
+                if (totalPages > 10) {
                     endSpacers = true;
-                } else if (totalPages !== 2) {
+                } 
+                if (this.pageIndex + 10 >= totalPages) {
                     lastPage = null;
+                    endSpacers = false;
                 }
 
                 // pages
                 var pageAfterStart = 0;
-                for (var i=1; ((i<this.pagesRangeSize) && (i<totalPages)); i++) {
-                    pageId = firstPageToDisplay+i;
+                for (var i=0; ((i<this.pagesRangeSize) && (i<totalPages)); i++) {
+                    pageId = this.pageIndex+i;
                     selected = (pageId == currentPageId);
-                    if (pageId !== totalPages-1) {
-                        if (pageId !== pageAfterStart + 1) {
-                            startSpacers = true;
-                        } else if (pageId === totalPages - 2) {
-                            endSpacers = false;
-                        }
-                        pages.push({ "id" : pageId, "label" : (pageId+1), "selected" :  selected});
-                        pageAfterStart = pageId;
+                    if (this.pageIndex>0) {
+                        startSpacers = true;
+                    } else if (pageId === totalPages - 2) {
+                        endSpacers = false;
                     }
-                }
+                    pages.push({ "id" : pageId, "label" : (pageId+1), "selected" :  selected});
+                    pageAfterStart = pageId;
+             }
 
                 // next
                 var next;
-                if (currentPageId<totalPages-1) {
-                    next = { "id" : currentPageId+1};
+                if (this.pageIndex<totalPages-11) {
+                    next = { "id" : "next"};
                 }
 
                 var html = squid_api.template.squid_api_pagination({
