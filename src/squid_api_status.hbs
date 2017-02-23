@@ -16,4 +16,8 @@
 			{{{errorData.statusText}}}<br>
 		{{/if}}
 	{{/if}}
+	{{#if notification}}
+	{{notification.objectType}} "{{notification.name}}" was modified by an external action. <br>
+	Please <a href="javascript:location.reload();" style="color: #fff; text-decoration: underline;">refresh your page</a> to reflect this change.
+	{{/if}}
 </div>

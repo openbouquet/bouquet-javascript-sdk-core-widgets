@@ -20,6 +20,15 @@
     squid_api.view.Router = Backbone.Router.extend({
         initialize: function($el) {
             this.$el = $el;
+            if (squid_api.options.enableTracking === true){
+                if (typeof ga !== "undefined") {
+                    this.bind("route", this._track);
+                }
+            }
+        },
+        
+        _track: function() {
+            ga("send","pageview",{page: "/"+Backbone.history.getFragment()});
         },
 
         ContentView: Backbone.View.extend({

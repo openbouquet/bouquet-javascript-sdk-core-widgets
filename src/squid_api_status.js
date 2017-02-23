@@ -61,11 +61,12 @@
         },
 
         renderDelayed: function() {
-            // just slightly delay rendering (to avoid flickering when action is very short)
+            // delay rendering (to avoid flickering when action is very short)
+            var delay = this.model.get("delayMillis") || 300; // 300ms by default
             var me = this;
             setTimeout(function() {
                 me.render();
-            }, 300);
+            }, delay);
         },
 
         render: function() {
@@ -82,52 +83,65 @@
             var running = ((status === this.model.STATUS_RUNNING) || (status === this.model.STATUS_PENDING));
             var failed = false;
             var level = "info", dismissible = true;
+            var fadeOut = true;
+            var notification = null;
 
             if (error) {
                 failed = true;
                 level = "danger";
+                fadeOut = false;
+            }
+            
+            if (running) {
+                fadeOut = false;
             }
 
-            if ((!running) && (!failed) && (!message)) {
-                // hide
-                this.$el.hide();
-            } else {
-                var jsonData = this.model.toJSON();
-                var errorData = null;
-                if (running && ! this.ignoreStatusChange) {
-                    message = this.runningMessage;
-                    level = "warning";
-                    dismissible = false;
-                } else if (jsonData.error) {
-                    if (jsonData.message !== null && jsonData.message !=="") {
-                        message = jsonData.message;
-                    } else if (jsonData.error.responseJSON && jsonData.error.responseJSON.error) {
-                        message = jsonData.error.responseJSON.error;
-                    } else {
-                        errorData = jsonData.error;
-                    }
-                    if (jsonData.error.dismissible === false) {
-                        dismissible = false;
-                    } else {
-                        dismissible = true;
-                    }
+            var jsonData = this.model.toJSON();
+            var errorData = null;
+            if (running && ! this.ignoreStatusChange) {
+                message = this.runningMessage;
+                level = "warning";
+                dismissible = false;
+            } else if (jsonData.error) {
+                if (jsonData.error.message) {
+                    message = jsonData.error.message;
+                } else if (jsonData.error.responseJSON && jsonData.error.responseJSON.error) {
+                    message = jsonData.error.responseJSON.error;
+                } else {
+                    errorData = jsonData.error;
                 }
-
+                if (jsonData.error.dismissible === false) {
+                    dismissible = false;
+                } else {
+                    dismissible = true;
+                }
+            } else if (jsonData.type === "notification") {
+                fadeOut = false;
+                message = null;
+                level = "warning";
+                notification = jsonData.data;
+                // by default do not display meta-model notifications (T1684)
+                if (notification.objectType) {
+                    console.log(notification.objectType + " '" + notification.name +"' was modified by user : "+notification.emitter.userId);
+                    return;
+                }
+            }
+            
+            // display
+            var html;
+            if (message || errorData || notification) {
                 if (message) {
                     message = message.replace("\n","<br>");
-                } else if (!errorData){
-                    message = "An error has occurred (sorry we can't give you more details)";
                 }
-
-                var html = this.template({"level" : level, "dismissible" : dismissible, "message" : message, "errorData" : errorData});
-
-                // Message to null after being displayed
-                this.model.set({message : null}, {silent : true});
-
-                this.$el.find(".squid-api-core-widgets-status").html(html);
-
-                // view message for 10 seconds unless it is an error
-                if (! error && ! running) {
+                html = this.template({
+                    "level" : level,
+                    "dismissible" : dismissible,
+                    "message" : message,
+                    "errorData" : errorData,
+                    "notification" : notification
+                });
+                // view message for 15 seconds unless it is an error
+                if (fadeOut) {
                     setTimeout(function() {
                         var me1 = me;
                         me.$el.find(".status-error").fadeOut(function() {
@@ -135,7 +149,10 @@
                         });
                     }, 15000);
                 }
+            } else {
+                html = "";
             }
+            this.$el.find(".squid-api-core-widgets-status").html(html);   
             return this;
         }
 

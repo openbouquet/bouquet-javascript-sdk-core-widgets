@@ -13,17 +13,25 @@ function program1(depth0,data) {
   if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</span> <a href=\"#\" class=\"sq-logout\">logout</a>\n";
+    + "</span> ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.logout), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
   return buffer;
   }
+function program2(depth0,data) {
+  
+  
+  return "<a href=\"#\" class=\"sq-logout\">logout</a>";
+  }
 
-function program3(depth0,data) {
+function program4(depth0,data) {
   
   
   return "\n<a href=\"#\" class=\"sq-signin\">sign-in</a>\n";
   }
 
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.login), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.login), {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { return stack1; }
   else { return ''; }
   });
@@ -47,21 +55,34 @@ function program3(depth0,data) {
 
 function program5(depth0,data) {
   
+  var buffer = "", stack1;
+  buffer += "\n		<li class=\"clickable ";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.selected), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\" data-id=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\"><a href=\"#\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.label)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a></li>\n		";
+  return buffer;
+  }
+function program6(depth0,data) {
+  
   
   return " active ";
   }
 
-function program7(depth0,data) {
+function program8(depth0,data) {
   
   
   return "\n		<li><a style=\"pointer-events: none; cursor: default;\">...</a></li>\n		";
   }
 
-function program9(depth0,data) {
+function program10(depth0,data) {
   
   var buffer = "", stack1, helper;
   buffer += "\n		<li class=\"clickable ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.selected), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.selected), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\" data-id=\"";
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -75,11 +96,11 @@ function program9(depth0,data) {
   return buffer;
   }
 
-function program11(depth0,data) {
+function program12(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n		<li class=\"clickable ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.lastPage)),stack1 == null || stack1 === false ? stack1 : stack1.selected), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.lastPage)),stack1 == null || stack1 === false ? stack1 : stack1.selected), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\" data-id=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.lastPage)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -89,42 +110,38 @@ function program11(depth0,data) {
   return buffer;
   }
 
-function program13(depth0,data) {
+function program14(depth0,data) {
   
   
   return "<i class=\"fa fa-arrow-right\"></i>";
   }
 
-  buffer += "<div class=\"pagination-container\">\n	<ul class=\"pagination\">\n		\n		<li class=\"clickable previous\" data-id=\""
+  buffer += "<div class=\"pagination-container\">\n	<ul class=\"pagination\">\n\n		<li class=\"clickable previous\" data-id=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.prev)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"><a href=\"#\">";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.prev), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</a></li>\n\n		<li class=\"clickable ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.selected), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\" data-id=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\"><a href=\"#\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.label)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></li>\n\n		";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.startSpacers), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
+  buffer += "</a></li>\n\n		";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.firstPage), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n		";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.pages), {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.startSpacers), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n		";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.endSpacers), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.pages), {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n		";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.lastPage), {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.endSpacers), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n		";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.lastPage), {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n		<li class=\"clickable\" class=\"next\" data-id=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.next)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"><a  href=\"#\">";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.next), {hash:{},inverse:self.program(3, program3, data),fn:self.program(13, program13, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.next), {hash:{},inverse:self.program(3, program3, data),fn:self.program(14, program14, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</a></li>\n		\n	</ul>\n</div>";
+  buffer += "</a></li>\n\n	</ul>\n</div>\n";
   return buffer;
   });
 
@@ -194,7 +211,7 @@ function program7(depth0,data) {
 this["squid_api"]["template"]["squid_api_status"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", self=this;
+  var buffer = "", stack1, helper, functionType="function", self=this, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
@@ -264,6 +281,17 @@ function program12(depth0,data) {
   return buffer;
   }
 
+function program14(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\r\n	"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.notification)),stack1 == null || stack1 === false ? stack1 : stack1.objectType)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + " \""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.notification)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" was modified by an external action. <br>\r\n	Please <a href=\"javascript:location.reload();\" style=\"color: #fff; text-decoration: underline;\">refresh your page</a> to reflect this change.\r\n	";
+  return buffer;
+  }
+
   buffer += "<div class=\"status-error alert alert-";
   if (helper = helpers.level) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.level); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -279,6 +307,9 @@ function program12(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n	";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.errorData), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n	";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.notification), {hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n</div>\r\n";
   return buffer;
@@ -320,6 +351,7 @@ function program1(depth0,data) {
         el : "#login",
         redirectUri: null,
         autoShow: true,
+        hideLogoutLink: null,
         template: squid_api.template.squid_api_login,
 
         initialize: function(options) {
@@ -334,6 +366,9 @@ function program1(depth0,data) {
                 }
                 if (options.template) {
                     this.template = options.template;
+                }
+                if (options.hideLogoutLink) {
+                	this.hideLogoutLink = options.hideLogoutLink;
                 }
             }
         },
@@ -354,6 +389,7 @@ function program1(depth0,data) {
         },
 
         render: function() {
+            var me = this;
             if (this.model) {
                 if (!this.model.get("error")) {
                     var userLogin = this.model.get("login");
@@ -364,8 +400,20 @@ function program1(depth0,data) {
                             this.login();
                         }
                     }
-                    var html = this.template(this.model.toJSON());
-                    this.$el.html(html);
+                    var data = this.model.toJSON();
+                    if (data.accessToken) {
+                        data.logout = true;
+                    } else {
+                        // no auth mode
+                        data.logout = false;
+                    }
+                    squid_api.getCustomer().done(function(customer) {
+                        if (customer.get("authMode") === "BYPASS" || me.hideLogoutLink === true) {
+                            data.logout = false;
+                        }
+                        var html = me.template(data);
+                        me.$el.html(html);
+                    });
                 }
             }
 
@@ -374,12 +422,7 @@ function program1(depth0,data) {
 
         login: function() {
             var url = squid_api.utils.getLoginUrl(this.redirectUri);
-            if (!squid_api.debug) {
-                window.location = url;
-            } else {
-                // bypass redirection
-                console.log("redirection : "+url);
-            }
+            squid_api.utils.redirect(url);
         },
 
         logout: function(event) {
@@ -404,6 +447,8 @@ function program1(depth0,data) {
         config : null,
         
         pagesRangeSize : 10,
+        
+        pageIndex: 0, 
 
         initialize : function(options) {
             this.config = options.config || squid_api.model.config;
@@ -416,70 +461,107 @@ function program1(depth0,data) {
             "click li.clickable" : function(event) {
                 event.preventDefault();
                 var pageId = $(event.currentTarget).data("id");
+                this.pageIndex = this.model.get("pageIndex") || 0;
+                var startIndex = this.model.get("startIndex");
                 var pageSize = this.config.get("maxResults");
-                this.config.set("startIndex", pageId * pageSize);
+                var results = this.model.get("results");
+                var totalSize, totalPages;
+                if (pageId === "prev") {
+                	this.pageIndex = Math.max( this.pageIndex - 10,0);
+                	this.config.set("pageIndex", this.pageIndex);
+                	this.config.set("startIndex", this.pageIndex * pageSize);
+                } else if (pageId === "next") {
+                    if (results) {
+                    	totalSize = results.totalSize;
+                        totalPages = Math.ceil(totalSize/pageSize);
+                        this.pageIndex = Math.min(this.pageIndex + 10,totalPages - 10);
+                    	this.config.set("pageIndex", this.pageIndex);
+                 		this.config.set("startIndex", this.pageIndex * pageSize);
+                    }
+                } else if (pageId === "first") {
+                    	this.pageIndex = 0;
+                    	this.config.set("pageIndex", this.pageIndex);
+                    	this.config.set("startIndex", this.pageIndex * pageSize);
+                } else if (pageId === "last") {
+                	if (results) {
+                		totalSize = results.totalSize;
+                		totalPages = Math.ceil(totalSize/pageSize);
+                		this.pageIndex = totalPages - 10;
+                		this.config.set("pageIndex", this.pageIndex);
+                		this.config.set("startIndex", (totalPages - 1) * pageSize);
+                    }
+                } else {
+                	if (this.config.get("pageIndex")>=0) {
+                		this.pageIndex = this.config.get("pageIndex");
+                	}
+                	this.config.set("startIndex", pageId * pageSize);
+                }
             }
         },
 
         render : function() {
-            var pageSize = this.config.get("maxResults");
-            var startIndex = this.config.get("startIndex");
+            var pageSize = this.config.get("maxResults") || 10;
+            // ignore pageSize Index
+            var startIndex = this.config.get("startIndex") || 0;
+            //var this.pageIndex = this.model.get("pageIndex") || 0;
             var results = this.model.get("results");
-            
             if (results) {
+                if (this.config.hasChanged("startIndex") === false || (this.pageIndex > 0 && startIndex === 0)) {
+                 	this.pageIndex = 0;
+                	startIndex = 0;
+            		this.config.set("pageIndex", 0);
+            		this.config.set("startIndex", 0);
+                }
                 var totalSize = results.totalSize;
                 var currentPageId = Math.floor(startIndex/pageSize);
                 var totalPages = Math.ceil(totalSize/pageSize);
-                var firstPageToDisplay = currentPageId - this.pagesRangeSize + 1;
-                if (firstPageToDisplay<0) {
-                    firstPageToDisplay = 0;
-                }
                     
                 var pages = [];
-                var pageId = firstPageToDisplay;
-                var selected = (pageId == currentPageId);
+                var pageId = this.pageIndex;
 
                 // prev
                 var prev;
-                if (currentPageId>0) {
-                    prev = { "id" : currentPageId-1};
+                if (this.pageIndex>0) {
+                    prev = { "id" : "prev"};
                 }
 
                 // first page
-                var firstPage = { "id" : 0, "label" : 1, "selected" :  selected};
-
+                var firstPage = { "id" : "first", "label" : 1, "selected" :  (0 === currentPageId)};
+                if (this.pageIndex === 0) {
+                	firstPage = null;
+                }
                 // last page
-                selected = (totalPages-1 == currentPageId);
-                var lastPage = { "id" : totalPages-1, "label" : totalPages, "selected" :  selected};
+                var selected = (totalPages-1 == currentPageId);
+                var lastPage = { "id" : "last", "label" : totalPages, "selected" :  selected};
 
                 // Spacers
                 var startSpacers, endSpacers;
-                if (totalPages > 2) {
+                if (totalPages > 10) {
                     endSpacers = true;
-                } else if (totalPages !== 2) {
+                } 
+                if (this.pageIndex + 10 >= totalPages) {
                     lastPage = null;
+                    endSpacers = false;
                 }
 
                 // pages
                 var pageAfterStart = 0;
-                for (var i=1; ((i<this.pagesRangeSize) && (i<totalPages)); i++) {
-                    pageId = firstPageToDisplay+i;
+                for (var i=0; ((i<this.pagesRangeSize) && (i<totalPages)); i++) {
+                    pageId = this.pageIndex+i;
                     selected = (pageId == currentPageId);
-                    if (pageId !== totalPages-1) {
-                        if (pageId !== pageAfterStart + 1) {
-                            startSpacers = true;
-                        } else if (pageId === totalPages - 2) {
-                            endSpacers = false;
-                        }
-                        pages.push({ "id" : pageId, "label" : (pageId+1), "selected" :  selected});
-                        pageAfterStart = pageId;
+                    if (this.pageIndex>0) {
+                        startSpacers = true;
+                    } else if (pageId === totalPages - 2) {
+                        endSpacers = false;
                     }
-                }
+                    pages.push({ "id" : pageId, "label" : (pageId+1), "selected" :  selected});
+                    pageAfterStart = pageId;
+             }
 
                 // next
                 var next;
-                if (currentPageId<totalPages-1) {
-                    next = { "id" : currentPageId+1};
+                if (this.pageIndex<totalPages-11) {
+                    next = { "id" : "next"};
                 }
 
                 var html = squid_api.template.squid_api_pagination({
@@ -491,11 +573,6 @@ function program1(depth0,data) {
                     "lastPage" : lastPage,
                     "next" : next
                 });
-
-                // CurrentPage ID Check
-                if (currentPageId > totalPages - 1) {
-                    this.config.set("startIndex", 0);
-                }
                     
                 this.$el.html(html);
             }
@@ -528,6 +605,15 @@ function program1(depth0,data) {
     squid_api.view.Router = Backbone.Router.extend({
         initialize: function($el) {
             this.$el = $el;
+            if (squid_api.options.enableTracking === true){
+                if (typeof ga !== "undefined") {
+                    this.bind("route", this._track);
+                }
+            }
+        },
+        
+        _track: function() {
+            ga("send","pageview",{page: "/"+Backbone.history.getFragment()});
         },
 
         ContentView: Backbone.View.extend({
@@ -715,11 +801,12 @@ function program1(depth0,data) {
         },
 
         renderDelayed: function() {
-            // just slightly delay rendering (to avoid flickering when action is very short)
+            // delay rendering (to avoid flickering when action is very short)
+            var delay = this.model.get("delayMillis") || 300; // 300ms by default
             var me = this;
             setTimeout(function() {
                 me.render();
-            }, 300);
+            }, delay);
         },
 
         render: function() {
@@ -736,52 +823,65 @@ function program1(depth0,data) {
             var running = ((status === this.model.STATUS_RUNNING) || (status === this.model.STATUS_PENDING));
             var failed = false;
             var level = "info", dismissible = true;
+            var fadeOut = true;
+            var notification = null;
 
             if (error) {
                 failed = true;
                 level = "danger";
+                fadeOut = false;
+            }
+            
+            if (running) {
+                fadeOut = false;
             }
 
-            if ((!running) && (!failed) && (!message)) {
-                // hide
-                this.$el.hide();
-            } else {
-                var jsonData = this.model.toJSON();
-                var errorData = null;
-                if (running && ! this.ignoreStatusChange) {
-                    message = this.runningMessage;
-                    level = "warning";
-                    dismissible = false;
-                } else if (jsonData.error) {
-                    if (jsonData.message !== null && jsonData.message !=="") {
-                        message = jsonData.message;
-                    } else if (jsonData.error.responseJSON && jsonData.error.responseJSON.error) {
-                        message = jsonData.error.responseJSON.error;
-                    } else {
-                        errorData = jsonData.error;
-                    }
-                    if (jsonData.error.dismissible === false) {
-                        dismissible = false;
-                    } else {
-                        dismissible = true;
-                    }
+            var jsonData = this.model.toJSON();
+            var errorData = null;
+            if (running && ! this.ignoreStatusChange) {
+                message = this.runningMessage;
+                level = "warning";
+                dismissible = false;
+            } else if (jsonData.error) {
+                if (jsonData.error.message) {
+                    message = jsonData.error.message;
+                } else if (jsonData.error.responseJSON && jsonData.error.responseJSON.error) {
+                    message = jsonData.error.responseJSON.error;
+                } else {
+                    errorData = jsonData.error;
                 }
-
+                if (jsonData.error.dismissible === false) {
+                    dismissible = false;
+                } else {
+                    dismissible = true;
+                }
+            } else if (jsonData.type === "notification") {
+                fadeOut = false;
+                message = null;
+                level = "warning";
+                notification = jsonData.data;
+                // by default do not display meta-model notifications (T1684)
+                if (notification.objectType) {
+                    console.log(notification.objectType + " '" + notification.name +"' was modified by user : "+notification.emitter.userId);
+                    return;
+                }
+            }
+            
+            // display
+            var html;
+            if (message || errorData || notification) {
                 if (message) {
                     message = message.replace("\n","<br>");
-                } else if (!errorData){
-                    message = "An error has occurred (sorry we can't give you more details)";
                 }
-
-                var html = this.template({"level" : level, "dismissible" : dismissible, "message" : message, "errorData" : errorData});
-
-                // Message to null after being displayed
-                this.model.set({message : null}, {silent : true});
-
-                this.$el.find(".squid-api-core-widgets-status").html(html);
-
-                // view message for 10 seconds unless it is an error
-                if (! error && ! running) {
+                html = this.template({
+                    "level" : level,
+                    "dismissible" : dismissible,
+                    "message" : message,
+                    "errorData" : errorData,
+                    "notification" : notification
+                });
+                // view message for 15 seconds unless it is an error
+                if (fadeOut) {
                     setTimeout(function() {
                         var me1 = me;
                         me.$el.find(".status-error").fadeOut(function() {
@@ -789,7 +889,10 @@ function program1(depth0,data) {
                         });
                     }, 15000);
                 }
+            } else {
+                html = "";
             }
+            this.$el.find(".squid-api-core-widgets-status").html(html);   
             return this;
         }
 

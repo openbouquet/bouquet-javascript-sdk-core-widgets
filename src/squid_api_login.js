@@ -13,6 +13,7 @@
         el : "#login",
         redirectUri: null,
         autoShow: true,
+        hideLogoutLink: null,
         template: squid_api.template.squid_api_login,
 
         initialize: function(options) {
@@ -27,6 +28,9 @@
                 }
                 if (options.template) {
                     this.template = options.template;
+                }
+                if (options.hideLogoutLink) {
+                	this.hideLogoutLink = options.hideLogoutLink;
                 }
             }
         },
@@ -47,6 +51,7 @@
         },
 
         render: function() {
+            var me = this;
             if (this.model) {
                 if (!this.model.get("error")) {
                     var userLogin = this.model.get("login");
@@ -57,8 +62,20 @@
                             this.login();
                         }
                     }
-                    var html = this.template(this.model.toJSON());
-                    this.$el.html(html);
+                    var data = this.model.toJSON();
+                    if (data.accessToken) {
+                        data.logout = true;
+                    } else {
+                        // no auth mode
+                        data.logout = false;
+                    }
+                    squid_api.getCustomer().done(function(customer) {
+                        if (customer.get("authMode") === "BYPASS" || me.hideLogoutLink === true) {
+                            data.logout = false;
+                        }
+                        var html = me.template(data);
+                        me.$el.html(html);
+                    });
                 }
             }
 
@@ -67,12 +84,7 @@
 
         login: function() {
             var url = squid_api.utils.getLoginUrl(this.redirectUri);
-            if (!squid_api.debug) {
-                window.location = url;
-            } else {
-                // bypass redirection
-                console.log("redirection : "+url);
-            }
+            squid_api.utils.redirect(url);
         },
 
         logout: function(event) {
