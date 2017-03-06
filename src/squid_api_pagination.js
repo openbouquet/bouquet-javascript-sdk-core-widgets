@@ -21,8 +21,8 @@
             "click li.clickable" : function(event) {
                 event.preventDefault();
                 var pageId = $(event.currentTarget).data("id");
-                this.pageIndex = this.model.get("pageIndex") || 0;
-                var startIndex = this.model.get("startIndex");
+                this.pageIndex = this.config.get("pageIndex") || 0;
+                var startIndex = this.config.get("startIndex");
                 var pageSize = this.config.get("maxResults");
                 var results = this.model.get("results");
                 var totalSize, totalPages;
