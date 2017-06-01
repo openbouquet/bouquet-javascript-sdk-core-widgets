@@ -131,7 +131,8 @@
                     "pages" : pages,
                     "endSpacers" : endSpacers,
                     "lastPage" : lastPage,
-                    "next" : next
+                    "next" : next,
+                    "hasPages": totalPages>1
                 });
                     
                 this.$el.html(html);
