@@ -108,7 +108,7 @@
                 } else if (jsonData.error.responseJSON && jsonData.error.responseJSON.error) {
                     message = jsonData.error.responseJSON.error;
                 } else {
-                    errorData = jsonData.error;
+                    errorData = {message: jsonData.error};
                 }
                 if (jsonData.error.dismissible === false) {
                     dismissible = false;
