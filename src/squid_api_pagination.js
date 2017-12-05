@@ -67,7 +67,7 @@
             var results = this.model.get("results");
             if (results) {
             	
-                if (this.pageIndex > 0 && startIndex === 0) {
+                if ((this.pageIndex > 0 && startIndex) === 0 || this.pageIndex === null) {
                  	this.pageIndex = 0;
             		this.config.set("pageIndex", 0);
                 }
