@@ -75,7 +75,13 @@
                 var totalSize = results.totalSize;
                 var currentPageId = Math.floor(startIndex/pageSize);
                 var totalPages = Math.ceil(totalSize/pageSize);
-                    
+                /* commented for now
+                if (totalPages<=currentPageId) {
+                	currentPageId = 0;
+                	this.pageIndex = 0;
+                	startIndex = 0;
+                }
+				*/
                 var pages = [];
                 var pageId = this.pageIndex;
 
