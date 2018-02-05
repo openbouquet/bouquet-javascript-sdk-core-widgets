@@ -106,8 +106,8 @@
                 if (jsonData.error.message) {
                     message = jsonData.error.message;
                 } else if (jsonData.error.responseJSON && jsonData.error.responseJSON.error) {
-                    message = jsonData.error.responseJSON.error;
-                } else {
+                   message = jsonData.error.responseJSON.error;
+                } else if (typeof jsonData.error === "string") {
                     errorData = {message: jsonData.error};
                 }
                 if (jsonData.error.dismissible === false) {
