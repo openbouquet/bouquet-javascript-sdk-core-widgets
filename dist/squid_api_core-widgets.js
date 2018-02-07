@@ -774,6 +774,7 @@ function program1(depth0,data) {
         format : null,
         runningMessage : "Computing in progress",
         failedMessage : "An error has occurred",
+        displayTime: 5000,
         ignoreStatusChange : null,
 
         initialize: function(options) {
@@ -793,6 +794,9 @@ function program1(depth0,data) {
                 }
                 if (options.ignoreStatusChange) {
                     this.ignoreStatusChange = options.ignoreStatusChange;
+                }
+                if (options.displayTime) {
+                	this.displayTime = options.displayTime;
                 }
             }
             if (! this.ignoreStatusChange) {
@@ -835,6 +839,10 @@ function program1(depth0,data) {
             var error = this.model.get("error");
             var status = this.model.get("status");
             var message = this.model.get("message");
+            var displayTime = this.displayTime;
+            if (this.model.has("displayTime")) {
+            	displayTime = this.model.get("displayTime");
+            }
             var running = ((status === this.model.STATUS_RUNNING) || (status === this.model.STATUS_PENDING));
             var failed = false;
             var level = "info", dismissible = true;
@@ -902,10 +910,13 @@ function program1(depth0,data) {
                         me.$el.find(".status-error").fadeOut(function() {
                             me1.$el.empty();
                         });
-                    }, 15000);
+                    }, displayTime);
                 }
             } else {
                 html = "";
+            }
+            if (this.model.has("displayTime")) {
+            	this.model.unset("displayTime");
             }
             this.$el.find(".squid-api-core-widgets-status").html(html);   
             return this;
