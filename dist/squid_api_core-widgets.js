@@ -1,349 +1,194 @@
 this["squid_api"] = this["squid_api"] || {};
 this["squid_api"]["template"] = this["squid_api"]["template"] || {};
 
-this["squid_api"]["template"]["squid_api_login"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+this["squid_api"]["template"]["squid_api_login"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n<span class='sq-welcome'>Welcome </span><span class='sq-login'>";
-  if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</span> ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.logout), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  
-  return "<a href=\"#\" class=\"sq-logout\">logout</a>";
-  }
+  return "<span class='sq-welcome'>Welcome </span><span class='sq-login'>"
+    + container.escapeExpression(((helper = (helper = helpers.login || (depth0 != null ? depth0.login : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"login","hash":{},"data":data}) : helper)))
+    + "</span> "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.logout : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n";
+},"2":function(container,depth0,helpers,partials,data) {
+    return "<a href=\"#\" class=\"sq-logout\">logout</a>";
+},"4":function(container,depth0,helpers,partials,data) {
+    return "<a href=\"#\" class=\"sq-signin\">sign-in</a>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
 
-function program4(depth0,data) {
-  
-  
-  return "\n<a href=\"#\" class=\"sq-signin\">sign-in</a>\n";
-  }
+  return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.login : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(4, data, 0),"data":data})) != null ? stack1 : "");
+},"useData":true});
 
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.login), {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { return stack1; }
-  else { return ''; }
-  });
+this["squid_api"]["template"]["squid_api_pagination"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : (container.nullContext || {});
 
-this["squid_api"]["template"]["squid_api_pagination"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n<div class=\"pagination-container\">\n	<ul class=\"pagination\">\n\n		<li class=\"clickable previous\" data-id=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.prev)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\"><a href=\"#\">";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.prev), {hash:{},inverse:self.program(4, program4, data),fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</a></li>\n\n		";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.firstPage), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n		";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.startSpacers), {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n		";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.pages), {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n		";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.endSpacers), {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n		";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.lastPage), {hash:{},inverse:self.noop,fn:self.program(13, program13, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n		<li class=\"clickable\" class=\"next\" data-id=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.next)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\"><a  href=\"#\">";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.next), {hash:{},inverse:self.program(4, program4, data),fn:self.program(15, program15, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</a></li>\n\n	</ul>\n</div>\n";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  
-  return "<i class=\"fa fa-arrow-left\"></i>";
-  }
-
-function program4(depth0,data) {
-  
-  
-  return "&nbsp;";
-  }
-
-function program6(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n		<li class=\"clickable ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.selected), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\" data-id=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+  return "<div class=\"pagination-container\">\n	<ul class=\"pagination\">\n\n		<li class=\"clickable previous\" data-id=\""
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.prev : depth0)) != null ? stack1.id : stack1), depth0))
     + "\"><a href=\"#\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.firstPage)),stack1 == null || stack1 === false ? stack1 : stack1.label)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></li>\n		";
-  return buffer;
-  }
-function program7(depth0,data) {
-  
-  
-  return " active ";
-  }
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.prev : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.program(4, data, 0),"data":data})) != null ? stack1 : "")
+    + "</a></li>\n\n"
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.firstPage : depth0),{"name":"if","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n"
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.startSpacers : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n"
+    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.pages : depth0),{"name":"each","hash":{},"fn":container.program(11, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n"
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.endSpacers : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n"
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.lastPage : depth0),{"name":"if","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n		<li class=\"clickable\" class=\"next\" data-id=\""
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.next : depth0)) != null ? stack1.id : stack1), depth0))
+    + "\"><a  href=\"#\">"
+    + ((stack1 = helpers["if"].call(alias3,(depth0 != null ? depth0.next : depth0),{"name":"if","hash":{},"fn":container.program(15, data, 0),"inverse":container.program(4, data, 0),"data":data})) != null ? stack1 : "")
+    + "</a></li>\n\n	</ul>\n</div>\n";
+},"2":function(container,depth0,helpers,partials,data) {
+    return "<i class=\"fa fa-arrow-left\"></i>";
+},"4":function(container,depth0,helpers,partials,data) {
+    return "&nbsp;";
+},"6":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
-function program9(depth0,data) {
-  
-  
-  return "\n		<li><a style=\"pointer-events: none; cursor: default;\">...</a></li>\n		";
-  }
-
-function program11(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n		<li class=\"clickable ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.selected), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\" data-id=\"";
-  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\"><a href=\"#\">";
-  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</a></li>\n		";
-  return buffer;
-  }
-
-function program13(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n		<li class=\"clickable ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.lastPage)),stack1 == null || stack1 === false ? stack1 : stack1.selected), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\" data-id=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.lastPage)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+  return "		<li class=\"clickable "
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? depth0.firstPage : depth0)) != null ? stack1.selected : stack1),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\" data-id=\""
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.firstPage : depth0)) != null ? stack1.id : stack1), depth0))
     + "\"><a href=\"#\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.lastPage)),stack1 == null || stack1 === false ? stack1 : stack1.label)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></li>\n		";
-  return buffer;
-  }
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.firstPage : depth0)) != null ? stack1.label : stack1), depth0))
+    + "</a></li>\n";
+},"7":function(container,depth0,helpers,partials,data) {
+    return " active ";
+},"9":function(container,depth0,helpers,partials,data) {
+    return "		<li><a style=\"pointer-events: none; cursor: default;\">...</a></li>\n";
+},"11":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-function program15(depth0,data) {
-  
-  
-  return "<i class=\"fa fa-arrow-right\"></i>";
-  }
+  return "		<li class=\"clickable "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\" data-id=\""
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\"><a href=\"#\">"
+    + alias4(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"label","hash":{},"data":data}) : helper)))
+    + "</a></li>\n";
+},"13":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.hasPages), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
-  return buffer;
-  });
+  return "		<li class=\"clickable "
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? depth0.lastPage : depth0)) != null ? stack1.selected : stack1),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\" data-id=\""
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.lastPage : depth0)) != null ? stack1.id : stack1), depth0))
+    + "\"><a href=\"#\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.lastPage : depth0)) != null ? stack1.label : stack1), depth0))
+    + "</a></li>\n";
+},"15":function(container,depth0,helpers,partials,data) {
+    return "<i class=\"fa fa-arrow-right\"></i>";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
 
-this["squid_api"]["template"]["squid_api_selector"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.hasPages : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"useData":true});
 
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\r\n    <select class=\"sq-select form-control\" ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.multiple), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ">\r\n        ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.options), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </select>\r\n";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  
-  return "multiple";
-  }
+this["squid_api"]["template"]["squid_api_selector"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-function program4(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\r\n            <option value=\"";
-  if (helper = helpers.value) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.value); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\" ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.selected), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ">\r\n                ";
-  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\r\n            </option>\r\n        ";
-  return buffer;
-  }
-function program5(depth0,data) {
-  
-  
-  return "selected";
-  }
+  return "    <select class=\"sq-select form-control\" "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.multiple : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ">\r\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.options : depth0),{"name":"each","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "    </select>\r\n";
+},"2":function(container,depth0,helpers,partials,data) {
+    return "multiple";
+},"4":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-function program7(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\r\n    <!-- just name -->\r\n    <label>";
-  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
+  return "            <option value=\""
+    + alias4(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"value","hash":{},"data":data}) : helper)))
+    + "\" "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ">\r\n                "
+    + alias4(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\r\n            </option>\r\n";
+},"5":function(container,depth0,helpers,partials,data) {
+    return "selected";
+},"7":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "    <!-- just name -->\r\n    <label>"
+    + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"name","hash":{},"data":data}) : helper)))
     + "</label>\r\n    <span>-</span>\r\n";
-  return buffer;
-  }
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
 
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.selAvailable), {hash:{},inverse:self.program(7, program7, data),fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n";
-  return buffer;
-  });
+  return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.selAvailable : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "");
+},"useData":true});
 
-this["squid_api"]["template"]["squid_api_status"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", self=this, escapeExpression=this.escapeExpression;
+this["squid_api"]["template"]["squid_api_status"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    return "alert-dismissible";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "	<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n";
+},"5":function(container,depth0,helpers,partials,data) {
+    var stack1, helper;
 
-function program1(depth0,data) {
-  
-  
-  return "alert-dismissible";
-  }
+  return "		"
+    + ((stack1 = ((helper = (helper = helpers.message || (depth0 != null ? depth0.message : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"message","hash":{},"data":data}) : helper))) != null ? stack1 : "")
+    + "\r\n";
+},"7":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-function program3(depth0,data) {
-  
-  
-  return "\r\n	<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n	";
-  }
+  return ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.errorData : depth0)) != null ? stack1.reason : stack1),{"name":"if","hash":{},"fn":container.program(8, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.errorData : depth0)) != null ? stack1.message : stack1),{"name":"if","hash":{},"fn":container.program(10, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.errorData : depth0)) != null ? stack1.statusText : stack1),{"name":"if","hash":{},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"8":function(container,depth0,helpers,partials,data) {
+    var stack1;
 
-function program5(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\r\n		";
-  if (helper = helpers.message) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.message); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n	";
-  return buffer;
-  }
+  return "			"
+    + ((stack1 = container.lambda(((stack1 = (depth0 != null ? depth0.errorData : depth0)) != null ? stack1.reason : stack1), depth0)) != null ? stack1 : "")
+    + "<br>\r\n";
+},"10":function(container,depth0,helpers,partials,data) {
+    var stack1;
 
-function program7(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\r\n		";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.errorData)),stack1 == null || stack1 === false ? stack1 : stack1.reason), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n		";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.errorData)),stack1 == null || stack1 === false ? stack1 : stack1.message), {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n		";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.errorData)),stack1 == null || stack1 === false ? stack1 : stack1.statusText), {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n	";
-  return buffer;
-  }
-function program8(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\r\n			";
-  stack1 = ((stack1 = ((stack1 = (depth0 && depth0.errorData)),stack1 == null || stack1 === false ? stack1 : stack1.reason)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "<br>\r\n		";
-  return buffer;
-  }
+  return "			"
+    + ((stack1 = container.lambda(((stack1 = (depth0 != null ? depth0.errorData : depth0)) != null ? stack1.message : stack1), depth0)) != null ? stack1 : "")
+    + "<br>\r\n";
+},"12":function(container,depth0,helpers,partials,data) {
+    var stack1;
 
-function program10(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\r\n			";
-  stack1 = ((stack1 = ((stack1 = (depth0 && depth0.errorData)),stack1 == null || stack1 === false ? stack1 : stack1.message)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "<br>\r\n		";
-  return buffer;
-  }
+  return "			"
+    + ((stack1 = container.lambda(((stack1 = (depth0 != null ? depth0.errorData : depth0)) != null ? stack1.statusText : stack1), depth0)) != null ? stack1 : "")
+    + "<br>\r\n";
+},"14":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
-function program12(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\r\n			";
-  stack1 = ((stack1 = ((stack1 = (depth0 && depth0.errorData)),stack1 == null || stack1 === false ? stack1 : stack1.statusText)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "<br>\r\n		";
-  return buffer;
-  }
-
-function program14(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\r\n	"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.notification)),stack1 == null || stack1 === false ? stack1 : stack1.objectType)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+  return "	"
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.notification : depth0)) != null ? stack1.objectType : stack1), depth0))
     + " \""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.notification)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" was modified by an external action. <br>\r\n	Please <a href=\"javascript:location.reload();\" style=\"color: #fff; text-decoration: underline;\">refresh your page</a> to reflect this change.\r\n	";
-  return buffer;
-  }
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.notification : depth0)) != null ? stack1.name : stack1), depth0))
+    + "\" was modified by an external action. <br>\r\n	Please <a href=\"javascript:location.reload();\" style=\"color: #fff; text-decoration: underline;\">refresh your page</a> to reflect this change.\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-  buffer += "<div class=\"status-error alert alert-";
-  if (helper = helpers.level) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.level); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.dismissible), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\">\r\n	";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.dismissible), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n	";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.message), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n	";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.errorData), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n	";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.notification), {hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</div>\r\n";
-  return buffer;
-  });
+  return "<div class=\"status-error alert alert-"
+    + ((stack1 = ((helper = (helper = helpers.level || (depth0 != null ? depth0.level : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"level","hash":{},"data":data}) : helper))) != null ? stack1 : "")
+    + " "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.dismissible : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\">\r\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.dismissible : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.message : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.errorData : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.notification : depth0),{"name":"if","hash":{},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</div>\r\n";
+},"useData":true});
 
-this["squid_api"]["template"]["squid_api_switch"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
+this["squid_api"]["template"]["squid_api_switch"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    return " checked ";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-function program1(depth0,data) {
-  
-  
-  return " checked ";
-  }
-
-  buffer += "<div class=\"checkbox\">\n	<label>\n		<input type=\"checkbox\" ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.checked), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "> ";
-  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
+  return "<div class=\"checkbox\">\n	<label>\n		<input type=\"checkbox\" "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.checked : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "> "
+    + container.escapeExpression(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"label","hash":{},"data":data}) : helper)))
     + "\n	</label>\n</div>";
-  return buffer;
-  });
+},"useData":true});
 /*! Squid Core Widget */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
