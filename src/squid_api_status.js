@@ -49,6 +49,10 @@
             }
             this.model.on('change:error', this.render, this);
             this.model.on('change:message', this.renderDelayed, this);
+            if (typeof $.i18n !== "undefined") {
+            	this.runningMessage = $.i18n.t("runningMessage");
+            	this.failedMessage = $.i18n.t("failedMessage");
+            }
         },
 
         events: {
