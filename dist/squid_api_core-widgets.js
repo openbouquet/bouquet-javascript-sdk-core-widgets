@@ -10,7 +10,7 @@ this["squid_api"]["template"]["squid_api_login"] = Handlebars.template({"1":func
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.logout : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n";
 },"2":function(container,depth0,helpers,partials,data) {
-    return "<a href=\"#\" class=\"sq-logout\">logout</a>";
+    return "<a href=\"#\" class=\"sq-logout\" data-i18n=\"button-logout\">logout</a>";
 },"4":function(container,depth0,helpers,partials,data) {
     return "<a href=\"#\" class=\"sq-signin\">sign-in</a>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -266,11 +266,14 @@ this["squid_api"]["template"]["squid_api_switch"] = Handlebars.template({"1":fun
                         }
                         var html = me.template(data);
                         me.$el.html(html);
+                        if (typeof $.i18n !== "undefined") {
+                        	me.$el.localize();
+                        }
                     });
                 }
-            }
-
-            return this;
+           }
+            
+           return this;
         },
 
         login: function() {
@@ -649,6 +652,10 @@ this["squid_api"]["template"]["squid_api_switch"] = Handlebars.template({"1":fun
             }
             this.model.on('change:error', this.render, this);
             this.model.on('change:message', this.renderDelayed, this);
+            if (typeof $.i18n !== "undefined") {
+            	this.runningMessage = $.i18n.t("runningMessage");
+            	this.failedMessage = $.i18n.t("failedMessage");
+            }
         },
 
         events: {
