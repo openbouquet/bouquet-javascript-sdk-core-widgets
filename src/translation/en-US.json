@@ -1,4 +1,5 @@
 {
   "dimensions":"Dimensions",
   "metrics" : "Metrics",
+  "button-logout": "Logout"
 }

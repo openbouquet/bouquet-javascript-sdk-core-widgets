@@ -1,4 +1,5 @@
 {
   "dimensions":"Dimensions",
   "metrics":"Indicateurs",
+  "button-logout": "Déconnection"
 }

@@ -75,11 +75,14 @@
                         }
                         var html = me.template(data);
                         me.$el.html(html);
+                        if (typeof $.i18n !== "undefined") {
+                        	me.$el.localize();
+                        }
                     });
                 }
-            }
-
-            return this;
+           }
+            
+           return this;
         },
 
         login: function() {
