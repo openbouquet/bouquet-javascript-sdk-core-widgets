@@ -722,6 +722,9 @@ this["squid_api"]["template"]["squid_api_switch"] = Handlebars.template({"1":fun
                     message = jsonData.error.message;
                 } else if (jsonData.error.responseJSON && jsonData.error.responseJSON.error) {
                    message = jsonData.error.responseJSON.error;
+                   if (jsonData.error.status === 403 && typeof jsonData.error.responseJSON.redirectURL !== "undefined") {
+                	   message += "\nPlease <a href=\""+jsonData.error.responseJSON.redirectURL+"\" rel=\"noopener noreferrer\" target=\"_blanck\"> link with the data source</a>";
+                   }
                 } else if (typeof jsonData.error === "string") {
                     errorData = {message: jsonData.error};
                 }

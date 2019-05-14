@@ -28,3 +28,13 @@
     max-height: 145px;
     overflow-x: hidden;
 }
+
+.squid-api-core-widgets-status a, 
+.squid-api-core-widgets-status a:active, 
+.squid-api-core-widgets-status a:hover, 
+.squid-api-core-widgets-status a:visited {
+     color: #ffffff;
+     background-color: #ed4f32;
+     text-decoration: underline;
+}
+
