@@ -14,6 +14,7 @@
         redirectUri: null,
         autoShow: true,
         hideLogoutLink: null,
+        legacy: false,
         template: squid_api.template.squid_api_login,
 
         initialize: function(options) {
@@ -31,6 +32,9 @@
                 }
                 if (options.hideLogoutLink) {
                 	this.hideLogoutLink = options.hideLogoutLink;
+                }
+                if (options.legacy) {
+                	this.legacy = options.legacy;
                 }
             }
         },
@@ -86,7 +90,7 @@
         },
 
         login: function() {
-            var url = squid_api.utils.getLoginUrl(this.redirectUri);
+            var url = squid_api.utils.getLoginUrl(this.redirectUri, this.legacy);
             squid_api.utils.redirect(url);
         },
 
